@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<GridPane maxHeight="150.0" maxWidth="400.0" minHeight="150.0" minWidth="400.0" prefHeight="150.0" prefWidth="400.0" stylesheets="@../css/main.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="life.jlu.osgi.packagetool.controller.AboutController">
+  <columnConstraints>
+    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+  </columnConstraints>
+  <rowConstraints>
+    <RowConstraints maxHeight="50.0" minHeight="50.0" prefHeight="50.0" vgrow="ALWAYS" />
+    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+  </rowConstraints>
+   <children>
+      <HBox id="prefs-header-box" fx:id="header_box" prefHeight="100.0" prefWidth="200.0">
+         <children>
+            <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true" HBox.hgrow="ALWAYS">
+               <image>
+                  <Image url="@../images/info_24.png" />
+               </image>
+               <HBox.margin>
+                  <Insets bottom="13.0" left="25.0" right="25.0" top="13.0" />
+               </HBox.margin>
+            </ImageView>
+            <Label maxWidth="1.7976931348623157E308" text="About" HBox.hgrow="ALWAYS">
+               <font>
+                  <Font size="24.0" />
+               </font>
+               <HBox.margin>
+                  <Insets bottom="10.0" top="10.0" />
+               </HBox.margin>
+            </Label>
+         </children>
+      </HBox>
+      <VBox prefHeight="200.0" prefWidth="100.0" spacing="15.0" GridPane.rowIndex="1">
+         <padding>
+            <Insets bottom="25.0" left="25.0" right="25.0" top="25.0" />
+         </padding>
+         <children>
+            <HBox alignment="BOTTOM_LEFT" spacing="10.0">
+               <children>
+                  <Label fx:id="app_name" styleClass="about-label-h2" text="%name" />
+                  <Label styleClass="about-label-h3" text="%version" />
+               </children>
+            </HBox>
+            <Hyperlink fx:id="url_link" onAction="#openLink" styleClass="about-label-h3" text="%url" />
+         </children>
+      </VBox>
+   </children>
+</GridPane>

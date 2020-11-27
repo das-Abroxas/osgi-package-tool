@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<GridPane maxHeight="250.0" maxWidth="1920.0" minHeight="250.0" minWidth="800.0" prefHeight="250.0" prefWidth="800.0" stylesheets="@../css/main.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="life.jlu.osgi.packagetool.controller.PackageMetaController">
+  <columnConstraints>
+    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+  </columnConstraints>
+  <rowConstraints>
+      <RowConstraints maxHeight="50.0" minHeight="50.0" prefHeight="50.0" vgrow="SOMETIMES" />
+    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+  </rowConstraints>
+   <children>
+      <HBox id="prefs-header-box" fx:id="header_box" alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.columnSpan="2">
+         <children>
+            <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true" HBox.hgrow="ALWAYS">
+               <image>
+                  <Image url="@../images/pkg_meta_24.png" />
+               </image>
+               <HBox.margin>
+                  <Insets bottom="13.0" left="25.0" right="25.0" top="13.0" />
+               </HBox.margin>
+            </ImageView>
+            <Label maxWidth="1.7976931348623157E308" text="Package Metadata" HBox.hgrow="ALWAYS">
+               <font>
+                  <Font size="20.0" />
+               </font>
+               <HBox.margin>
+                  <Insets bottom="10.0" top="10.0" />
+               </HBox.margin>
+            </Label>
+         </children>
+      </HBox>
+      <VBox fx:id="container_meta" prefHeight="200.0" prefWidth="100.0" spacing="10.0" styleClass="container-meta-box" GridPane.rowIndex="1">
+         <children>
+            <VBox fx:id="container_header" alignment="CENTER" spacing="10.0" styleClass="static-attributes">
+               <padding>
+                  <Insets bottom="15.0" left="25.0" right="25.0" top="5.0" />
+               </padding>
+               <children>
+                  <HBox alignment="CENTER" maxHeight="20.0" minHeight="20.0" prefHeight="20.0">
+                     <children>
+                        <Label text="Container Export" HBox.hgrow="ALWAYS">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox>
+                     <children>
+                        <Label fx:id="container_name_label" maxWidth="50.0" minWidth="75.0" prefWidth="50.0" text="Name:" />
+                        <Label fx:id="container_name_value" text="[Placeholder]" />
+                     </children>
+                  </HBox>
+                  <HBox>
+                     <children>
+                        <Label fx:id="container_version_label" maxWidth="50.0" minWidth="75.0" prefWidth="50.0" text="Version:" />
+                        <Label fx:id="container_version_value" text="[Placeholder]" HBox.hgrow="ALWAYS" />
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+            <VBox fx:id="container_attrs" prefHeight="200.0" prefWidth="100.0" spacing="10.0" VBox.vgrow="ALWAYS">
+               <padding>
+                  <Insets bottom="15.0" left="25.0" right="25.0" top="5.0" />
+               </padding></VBox>
+         </children>
+      </VBox>
+      <VBox fx:id="bundle_meta" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+         <children>
+            <VBox fx:id="bundle_static_attributes" spacing="10.0" styleClass="static-attributes">
+               <children>
+                  <HBox fx:id="bundle_header" alignment="CENTER" maxHeight="20.0" minHeight="20.0" prefHeight="20.0">
+                     <children>
+                        <Label text="Project Import">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox VBox.vgrow="ALWAYS">
+                     <children>
+                        <Label fx:id="bundle_name_label" maxWidth="50.0" minWidth="75.0" prefWidth="50.0" text="Name:" />
+                        <Label fx:id="bundle_name_value" text="[Placeholder]" />
+                     </children>
+                  </HBox>
+                  <HBox>
+                     <children>
+                        <Label fx:id="bundle_version_label" maxWidth="50.0" minWidth="75.0" prefWidth="50.0" text="Version:" />
+                        <Label fx:id="bundle_version_value" text="[Placeholder]" HBox.hgrow="ALWAYS" />
+                     </children>
+                  </HBox>
+               </children>
+               <padding>
+                  <Insets bottom="15.0" left="25.0" right="25.0" top="5.0" />
+               </padding>
+            </VBox>
+            <VBox fx:id="bundle_dynamic_attrs" spacing="10.0" styleClass="bundle-static-attributes" VBox.vgrow="ALWAYS">
+               <padding>
+                  <Insets bottom="15.0" left="25.0" right="25.0" top="15.0" />
+               </padding>
+            </VBox>
+         </children>
+      </VBox>
+   </children>
+</GridPane>
