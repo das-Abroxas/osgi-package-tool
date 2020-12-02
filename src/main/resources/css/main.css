@@ -173,3 +173,36 @@
   -fx-border-style: solid;
   -fx-border-color: #ccc;
 }
+
+
+/* --------------------------------------------------------------------------------------------- */
+/* ----- Custom Help Dialog Classes ------------------------------------------------------------ */
+/* --------------------------------------------------------------------------------------------- */
+.help-h1 {
+  -fx-font-size: 20px;
+  -fx-text-fill: #555;
+  -fx-font-weight: bold;
+}
+
+.help-h2 {
+  -fx-font-size: 18px;
+  -fx-text-fill: #666;
+  -fx-font-weight: bold;
+}
+
+.help-h3 {
+  -fx-font-size: 16px;
+  -fx-text-fill: #666;
+  -fx-font-weight: bold;
+}
+
+.help-p {
+  -fx-font-size: 14px;
+  -fx-text-fill: #444;
+}
+
+help-code {
+  -fx-font-family: "Liberation Mono";
+  -fx-background-color: white;
+  -fx-font-style: italic;
+}
