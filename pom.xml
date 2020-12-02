@@ -7,7 +7,7 @@
     <groupId>life.jlu</groupId>
     <artifactId>osgi-package-tool</artifactId>
     <name>OSGi Package Tool</name>
-    <version>1.0.0</version>
+    <version>1.1.0</version>
     <url>https://github.com/das-Abroxas/osgi-package-tool</url>
 
     <properties>
