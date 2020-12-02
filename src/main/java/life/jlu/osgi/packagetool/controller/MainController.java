@@ -30,6 +30,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 
@@ -370,21 +371,20 @@ public class MainController {
 
     @FXML
     private void showHelp() {
-        DialogUtil.showErrorDialog("Not implemented.", "This feature still needs to be implemented.");
 
-        // ToDo: show Help stage with TreeView for topics etc.
-        /*
         try {
             FXMLLoader loader = new FXMLLoader(Main.class.getResource("/fxml/help.fxml"));
-
             Parent root = loader.load();
-            Scene scene = new Scene(root, 600, 600);
+
+            double height = Screen.getPrimary().getVisualBounds().getHeight() * 0.9;
+            double width = Screen.getPrimary().getVisualBounds().getWidth() * 0.9;
+
+            Scene scene = new Scene(root, width, height);
             scene.getStylesheets().add(Main.class.getResource("/css/main.css").toExternalForm());
 
             Stage stage = new Stage();
             stage.setTitle("OSGi Package Tool Help");
             stage.getIcons().add(new Image("/images/OSGi-logo.png"));
-            stage.setResizable(false);
             stage.setMinWidth(600);
             stage.setMaxWidth(1920);
             stage.setMinHeight(600);
@@ -396,7 +396,6 @@ public class MainController {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        */
     }
 
     @FXML
