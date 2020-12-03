@@ -812,6 +812,10 @@ public class MainController {
         @Override
         protected File call() throws Exception {
 
+            updateMessage("Validating output directory ...");
+            if (!Files.exists(outputDir))
+                throw new IllegalArgumentException("Output directory does not exist.");
+
             updateMessage("Creating Container Distro ...");
 
             System.setSecurityManager(secManager);  // Enable catch System.exit()
@@ -829,9 +833,14 @@ public class MainController {
 
         @Override
         protected void failed() {
-            Platform.runLater(() ->
+            Platform.runLater(() -> {
+                if (getException().getMessage() != null)
                     DialogUtil.showErrorDialog("Creating Distro failed",
-                            bndtools.getErrors().get( bndtools.getErrors().size()-1 )));
+                            getException().getMessage());
+                else
+                    DialogUtil.showErrorDialog("Creating Distro failed",
+                            bndtools.getErrors().get( bndtools.getErrors().size()-1 ));
+            });
         }
     }
 }
