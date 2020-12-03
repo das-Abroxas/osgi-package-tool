@@ -1,16 +1,21 @@
 package life.jlu.osgi.packagetool.controller;
 
 
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.SimpleBooleanProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+
 import life.jlu.osgi.packagetool.application.AppPreferences;
 import life.jlu.osgi.packagetool.util.StringToIntegerConverter;
 
 import java.io.File;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 
 /**
  * Adds the functionality to the preferences.fxml scene.
@@ -36,14 +41,28 @@ public class PreferencesController {
     @FXML
     private CheckBox dynamic_include;
 
+    @FXML
+    private Button save_btn;
+
+
+    /* ----------------------------------------------------------------------------------------- */
+    /* ----- Validation Properties ------------------------------------------------------------- */
+    /* ----------------------------------------------------------------------------------------- */
+    private final BooleanProperty valid_path = new SimpleBooleanProperty(false);
+
 
     /* ----------------------------------------------------------------------------------------- */
     /* ----- Initialization -------------------------------------------------------------------- */
     /* ----------------------------------------------------------------------------------------- */
     @FXML
     public void initialize() {
-        container_path.setText( AppPreferences.getStringPreference(container_path.getId()) );
-        container_path.setTooltip( new Tooltip("Path to the OSGi Container Distro JAR.") );
+        addValidationListener();
+        addValidationBinding();
+
+        container_path.setText(
+                AppPreferences.getStringPreference(container_path.getId()) );
+        container_path.setTooltip(
+                new Tooltip("Full path to the directory in which the OSGi container distro JAR will be created.") );
 
         container_host.setText( AppPreferences.getStringPreference(container_host.getId()) );
         container_host.setTooltip( new Tooltip("Either machine name or IP v4/v6 address of the host."));
@@ -73,6 +92,23 @@ public class PreferencesController {
             task_timeout.getValueFactory().setValue( enterValue );
         });
         task_timeout.getValueFactory().setValue(AppPreferences.getIntegerPreference(task_timeout.getId()));
+    }
+
+    private void addValidationListener() {
+        container_path.textProperty().addListener(event -> {
+            valid_path.setValue( Files.exists(Paths.get(container_path.getText())) );
+
+            if (!valid_path.getValue()) {
+                if (!container_path.getStyleClass().contains("invalid-pref"))
+                    container_path.getStyleClass().add("invalid-pref");
+            } else {
+                container_path.getStyleClass().remove("invalid-pref");
+            }
+        });
+    }
+
+    private void addValidationBinding() {
+        save_btn.disableProperty().bind( valid_path.not() );
     }
 
 
