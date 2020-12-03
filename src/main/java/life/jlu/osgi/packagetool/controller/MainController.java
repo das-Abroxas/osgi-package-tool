@@ -47,6 +47,10 @@ import life.jlu.osgi.packagetool.util.DialogUtil;
 import life.jlu.osgi.packagetool.util.ExecutorUtil;
 
 import java.io.File;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.concurrent.*;
 import java.util.stream.Collectors;
@@ -789,13 +793,21 @@ public class MainController {
     private class CreateDistroTask extends Task<File> {
 
         private final bnd bndtools = new bnd();
+        private final String stamp = new SimpleDateFormat("yyyyMMdd_HH-mm-ss").format(new Date());
+        private final String jar   = String.format("liferay-osgi-distro_%s.jar", stamp);
+
+        private final Path outputDir = Paths.get(AppPreferences.getStringPreference("container_path"));
+        private final String jarPath = Paths.get(outputDir.toString(), jar).toString();
+
         private final String[] args = new String[] {
                 "remote",
                 "-h", AppPreferences.getStringPreference("container_host"),
                 "-p", AppPreferences.getIntegerPreference("container_port").toString(),
                 "distro",
-                "-o", AppPreferences.getStringPreference("container_path"),
-                "liferay-osgi-container", "20201125"};
+                "-o", jarPath,             // Output file
+                "liferay-osgi-container",  // Bundle-SymbolicName
+                stamp.substring(0,8)       // Bundle-Version: yyyyMMdd
+        };
 
         @Override
         protected File call() throws Exception {
@@ -806,7 +818,7 @@ public class MainController {
             bndtools.start(args);
             System.setSecurityManager(null);  // Disable catch System.exit()
 
-            return new File(AppPreferences.getStringPreference("container_path"));
+            return new File(jarPath);
         }
 
         @Override
